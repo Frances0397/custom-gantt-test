@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Card>
+      <Card style={styles.cardContainer}>
         <SimpleGantt />
       </Card>
     </View>
@@ -27,4 +27,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cardContainer: {
+    borderRadius: 20,
+    overflow: 'hidden'
+  }
 });

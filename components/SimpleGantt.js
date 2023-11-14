@@ -5,7 +5,7 @@ import Svg, { Line, Rect } from 'react-native-svg';
 import TouchableRect from './TouchableRect';
 
 export default function SimpleGantt({ }) {
-    const numberOfLines = 5;
+    const numberOfLines = 6;
 
     const numberOfDays1 = 3;
     const numberOfDays2 = 4;
@@ -25,34 +25,53 @@ export default function SimpleGantt({ }) {
         alert("Ciao, sono un task");
     };
 
+    const onSuca = () => {
+        console.log("rettangolo");
+        alert("suca");
+    }
+
     return (
-        <Svg height="200" width="100%" style={{ zIndex: 0 }}>
-            {/* Render lines */}
-            {lines.map((line, index) => (
-                <Line
-                    key={index}
-                    x1={line.x1}
-                    y1={line.y1}
-                    x2={line.x2}
-                    y2={line.y2}
-                    stroke="black"
-                    strokeWidth="2"
-                    style={{ zIndex: 1 }}
-                />
-            ))}
+        <View>
+            <Svg height="100%" width="100%" style={styles.backgroundSvg}>
+                {/* Render lines */}
+                {lines.map((line, index) => (
+                    <Line
+                        key={index}
+                        x1={line.x1}
+                        y1={line.y1}
+                        x2={line.x2}
+                        y2={line.y2}
+                        stroke="black"
+                        strokeWidth="2"
+                        style={{ zIndex: 1 }}
+                    />
+                ))}
+                <Rect x="50" y="0" width="50" height="200" fill="blue" opacity="0.5" />
+            </Svg>
 
             {/* Render rectangle */}
-            {/* <TouchableRect /> */}
+            <TouchableRect />
             {/* <Pressable onPress={onPress} style={styles.pressableContainer}>
-                <Rect x="50" y="52" width={width1} height="50" fill="blue" rx="10" ry="10" style={{ zIndex: 10 }} />
+                <Svg>
+                    <Rect x="50" y="52" width={width1} height="50" fill="blue" rx="10" ry="10" style={{ zIndex: 10 }} />
+                </Svg>
+            </Pressable>
+            <Pressable onPress={onSuca} style={styles.pressableContainer}>
+                <Svg>
+                    <Rect x="0" y="0" width={width2} height="50" fill="blue" rx="10" ry="10" style={{ zIndex: 15 }} />
+                </Svg>
             </Pressable> */}
-            <Rect x="50" y="52" width={width1} height="50" fill="blue" rx="10" ry="10" onPress={onPress} />
-        </Svg>
+            {/* <Rect x="50" y="52" width={width1} height="50" fill="blue" rx="10" ry="10" onPress={onPress} />
+                <Rect x="0" y="0" width={width1} height="50" fill="blue" rx="10" ry="10" onPress={onSuca()} /> */}
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    pressableContainer: {
-        backgroundColor: 'transparent'
+    backgroundSvg: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        padding: 5
     }
 });
